@@ -5,7 +5,7 @@ const winningMessageTextElement = document.querySelector(
 );
 const winningMessage = document.querySelector("[data-winning-message]");
 const restartButton = document.querySelector("[data-restart-button]");
-
+let currentPlayer = "jogador1"
 
 let isCircleTurn;
 
@@ -38,9 +38,7 @@ const endGame = (isDraw) => {
   if (isDraw) {
     winningMessageTextElement.innerText = "Empate!";
   } else {
-    winningMessageTextElement.innerText = isCircleTurn
-      ? "O Venceu!"
-      : "X Venceu!";
+    winningMessageTextElement.innerText = `${currentPlayer} Venceu!`;
   }
 
   winningMessage.classList.add("show-winning-message");
@@ -76,8 +74,13 @@ const setBoardHoverClass = () => {
 };
 
 const swapTurns = () => {
-  isCircleTurn = !isCircleTurn;
-
+    isCircleTurn = !isCircleTurn;
+    if (currentPlayer === "jogador1") {
+        currentPlayer = "jogador2";
+    } else {
+        currentPlayer = "jogador1";
+    }
+    
   setBoardHoverClass();
 };
 
